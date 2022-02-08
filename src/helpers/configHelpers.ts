@@ -74,6 +74,14 @@ export function emojisEnabled(guild: Guild): boolean {
 	return config.emojisEnabled ?? true;
 }
 
+export function getMessageSubject(message: string): string{
+	const newlineIndex = message.indexOf('\n')
+	if (newlineIndex !== -1){
+		return message.slice(0, newlineIndex)
+	}
+	else return 'No Subject'
+}
+
 export function setMessage(guild: Guild, messageKey: MessageKey, value: string): boolean {
 	const config = getConfig(guild.id);
 	if (!config || !config.messages) { return false; }
